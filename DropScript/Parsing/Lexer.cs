@@ -53,6 +53,9 @@ namespace DropScript.Parsing
                     {
                         case ' ': addBufferAndToken(TokenType.WHITE_SPACE); break;
                         case '+': addBufferAndToken(TokenType.PLUS); break;
+                        case '#':
+                            while (i < script.Length - 1 && script[i + 1] != '\n') i++;
+                            break;
                         case '\n': addBufferAndToken(TokenType.NEW_LINE); break;
                         case '\\':
                             addBufferAndToken(TokenType.BACKSLASH);
