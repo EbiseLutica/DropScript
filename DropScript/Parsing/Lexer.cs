@@ -7,11 +7,9 @@ namespace DropScript.Parsing
     /// <summary>
     /// DropScriptの字句解析器。
     /// </summary>
-    public sealed class Lexer : IEnumerable<Token>
+    public static class Lexer
     {
-        private Lexer(List<Token> tokens) { this.tokens = tokens; }
-
-        public static Lexer Analyze(string script)
+        public static List<Token> Analyze(string script)
         {
             // 改行コード正規化
             script = script.Replace("\r\n", "\n").Replace("\r", "\n");
@@ -29,7 +27,7 @@ namespace DropScript.Parsing
             {
                 if (buffer?.Length > 0 || force)
                 {
-                    addToken(TokenType.STRING, buffer);
+                    addToken(TokenType.String, buffer);
                     clearBuffer();
                 }
             }
@@ -51,31 +49,19 @@ namespace DropScript.Parsing
                 {
                     switch (current)
                     {
-                        case ' ': addBufferAndToken(TokenType.WHITE_SPACE); break;
-                        case '+': addBufferAndToken(TokenType.PLUS); break;
+                        case ' ': addBufferAndToken(TokenType.WhiteSpace); break;
+                        case '+': addBufferAndToken(TokenType.Plus); break;
                         case '#':
                             while (i < script.Length - 1 && script[i + 1] != '\n') i++;
                             break;
-                        case '\n': addBufferAndToken(TokenType.NEW_LINE); break;
-                        case '\\':
-                            addBufferAndToken(TokenType.BACKSLASH);
-                            i++;
-                            if (i >= script.Length) throw new ParserException("Unexpected EOF");
-                            addToken(TokenType.STRING, script[i].ToString());
-                            if (script[i] == 'C')
-                            {
-                                i++;
-                                if (i >= script.Length) throw new ParserException("Unexpected EOF");
-                                addToken(TokenType.STRING, script[i].ToString());
-                            }
-                            break;
-                        case '$': addBufferAndToken(TokenType.DOLLAR); break;
-                        case '{': addBufferAndToken(TokenType.LEFT_CURLY_BRACE); break;
-                        case '}': addBufferAndToken(TokenType.RIGHT_CURLY_BRACE); break;
-                        case ',': addBufferAndToken(TokenType.COMMA); break;
-                        case '@': addBufferAndToken(TokenType.AT); break;
-                        case '%': addBufferAndToken(TokenType.PERCENT); break;
-                        case '=': addBufferAndToken(TokenType.EQUAL); break;
+                        case '\n': addBufferAndToken(TokenType.Newline); break;
+                        case '$': addBufferAndToken(TokenType.DollarSign); break;
+                        case '{': addBufferAndToken(TokenType.LeftCurlyBrace); break;
+                        case '}': addBufferAndToken(TokenType.RightCurlyBrace); break;
+                        case ',': addBufferAndToken(TokenType.Comma); break;
+                        case '@': addBufferAndToken(TokenType.At); break;
+                        case '%': addBufferAndToken(TokenType.Percent); break;
+                        case '=': addBufferAndToken(TokenType.Equal); break;
                         case '"':
                             isQuote = true;
                             addBuffer();
@@ -104,19 +90,7 @@ namespace DropScript.Parsing
             if (isQuote) throw new ParserException("Unexpected EOF");
             addBuffer();
 
-            return new Lexer(tokens);
+            return tokens;
         }
-
-        public IEnumerator<Token> GetEnumerator()
-        {
-            return tokens.GetEnumerator();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return tokens.GetEnumerator();
-        }
-
-        private List<Token> tokens;
     }
 }

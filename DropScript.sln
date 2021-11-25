@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DropScript", "DropScript\Dr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DropScript.Repl", "DropScript.Repl\DropScript.Repl.csproj", "{6A6FA066-2216-4A0E-A6FE-6A261766627B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DropScript.Test", "DropScript.Test\DropScript.Test.csproj", "{46A63F5B-B93B-4443-8C77-FEEB2EB407D8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{6A6FA066-2216-4A0E-A6FE-6A261766627B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6A6FA066-2216-4A0E-A6FE-6A261766627B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6A6FA066-2216-4A0E-A6FE-6A261766627B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46A63F5B-B93B-4443-8C77-FEEB2EB407D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46A63F5B-B93B-4443-8C77-FEEB2EB407D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46A63F5B-B93B-4443-8C77-FEEB2EB407D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46A63F5B-B93B-4443-8C77-FEEB2EB407D8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

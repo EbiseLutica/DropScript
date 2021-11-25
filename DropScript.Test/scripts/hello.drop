@@ -1,0 +1,8 @@
+# Simple Text
+Hello, world!
+
+# Variable
+Hello, ${name}!
+
+# Escape Sequence
+Hello, world!\nThis is a new line.

@@ -24,11 +24,14 @@ namespace DropScript.Repl
                     foreach (var (type, value) in tokens)
                     {
                         Console.ForegroundColor = ConsoleColor.Green;
-                        Console.Write(type);
+                        Console.Write(type.ToString());
                         Console.ResetColor();
-                        Console.Write(": ");
-                        Console.ForegroundColor = ConsoleColor.Yellow;
-                        Console.Write(value);
+                        if (!string.IsNullOrEmpty(value))
+                        {
+                            Console.Write(": ");
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.Write(value);
+                        }
                         Console.ResetColor();
                         Console.WriteLine();
                     }
