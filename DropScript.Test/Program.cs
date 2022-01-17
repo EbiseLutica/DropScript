@@ -8,8 +8,11 @@ namespace DropScript.Test
     {
         static void Main(string[] args)
         {
-            var a = Parser.Parse(File.ReadAllText("./scripts/command.drop"));
-            Console.WriteLine("a");
+            while (true)
+            {
+                var a = Parser.Parse(File.ReadAllText("./scripts/command.drop"));
+                Console.WriteLine("a");
+            }
         }
     }
 }

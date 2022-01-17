@@ -24,6 +24,7 @@ namespace DropScript.Parsing
             while (reader.Current != null)
             {
                 nodes.Add(ReadAsStatement(reader));
+                reader.SkipWhiteSpace();
             }
             return new StatementsNode(nodes);
         }
@@ -64,13 +65,18 @@ namespace DropScript.Parsing
                             reader.Next();
                         }
                     }
+                    reader.Next();
                     return new CommandNode(nameValue, parameters);
                 }
                 default:
-                    throw new NotImplementedException();
+                    throw new ParserException("");
             }
         }
-
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="reader"></param>
         private static void SkipWhiteSpace(this ListReader<Token> reader)
         {
             while (IsEofOr(reader.Current, TokenType.WhiteSpace))

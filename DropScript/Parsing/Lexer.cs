@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System;
 using System.Collections;
+using System.Linq;
 
 namespace DropScript.Parsing
 {
@@ -89,6 +90,11 @@ namespace DropScript.Parsing
             }
             if (isQuote) throw new ParserException("Unexpected EOF");
             addBuffer();
+
+            if (tokens.LastOrDefault()?.Type != TokenType.Newline)
+            {
+                tokens.Add(new Token(TokenType.Newline, null));
+            }
 
             return tokens;
         }

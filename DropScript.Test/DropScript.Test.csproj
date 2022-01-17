@@ -4,6 +4,15 @@
     <ProjectReference Include="..\DropScript\DropScript.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="scripts\command.drop">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="scripts\hello.drop">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net6.0</TargetFramework>
